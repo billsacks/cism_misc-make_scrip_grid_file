@@ -17,4 +17,8 @@ lat = infile->lat
 lon = infile->lon
 delete(infile)
 
-curvilinear_to_SCRIP(outfile_name, lat, lon, False)
+; remove degenerate time dimension from lat & lon
+lat_2d = rm_single_dims(lat)
+lon_2d = rm_single_dims(lon)
+
+curvilinear_to_SCRIP(outfile_name, lat_2d, lon_2d, False)
